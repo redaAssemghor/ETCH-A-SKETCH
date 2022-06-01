@@ -4,14 +4,25 @@
   }
   
   #container {
+    height: 575px;
+    width: 575px;
     display: grid;
-    grid-gap: 1em;
+    grid-gap: 5px;
     grid-template-rows: repeat(var(--grid-rows), 1fr);
     grid-template-columns: repeat(var(--grid-cols), 1fr);
+  }
+
+  .btn {
+    padding: 10px;
+    margin-left: 20%;
   }
   
   .grid-item {
     padding: 1em;
     border: 1px solid #ddd;
-    text-align: center;
+  }
+
+  .color {
+    background-color: rgb(130, 108, 108);
+    border: 1px solid black;
   }
