@@ -12,8 +12,6 @@ function makeRows(rows, cols) {
   };
 };
 
-makeRows(16, 16);
-
 
 const square = document.querySelector("div");
 square.addEventListener("mouseover", function(event) {
