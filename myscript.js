@@ -1,29 +1,42 @@
-const container = document.getElementById("container");
+const container = document.querySelector('.container');
+const screen = document.querySelector('.screen');
+const resize = document.getElementById('resize')
 
+let screenSize = 50;
 
-
-function makeRows(rows, cols) {
-  container.style.setProperty('--grid-rows', rows);
-  container.style.setProperty('--grid-cols', cols);
-  for (let i = 0; i < (rows * cols); i++) {
-    let cell = document.createElement("div");
-    
-    container.appendChild(cell).className = "grid-item";
-  };
+function makeRows(grdSize) {
+  for (let i = 0; i < grdSize ** 2; i++) {
+    let pxl = document.createElement("div");
+    screen.appendChild(pxl).className = "pixel";
+  }
+  screen.style.gridTemplateColumns = `repeat(${grdSize}, auto)`;
+  screen.style.gridTemplateRows = `repeat(${grdSize}, auto)`;
 };
+makeRows(screenSize);
 
 
-const square = document.querySelector("div");
-square.addEventListener("mouseover", function(event) {
-  event.target.classList.replace("grid-item", "color");
+
+
+resize.addEventListener('click', () =>{
+  screenSize = prompt("enter a screen size:",16);
+  if (screenSize > 100 || screenSize === null) {
+    alert('enter a valid input!');
+  }
+    makeRows(screenSize);
 });
 
 
-const btn = document.querySelector("button");
-btn.addEventListener('click', function() {
-  let a = prompt ("Enter number of squares per side:" , 16);
-  if (a != null && a < 100) {
-    return makeRows(a,a);
+const randomColor = () => {
+  let color = 'rgba(';
+  for(let i = 0;i< 3;i++){
+    color += Math.floor(Math.random() * 255) + ',';
   }
+  return color + '1)';
+}
+
+
+
+screen.addEventListener("mouseover", function(event) {
+  event.target.style.backgroundColor = randomColor();
 });
 
